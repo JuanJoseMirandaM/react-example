@@ -1,0 +1,25 @@
+name: Deploy to AWS S3
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+
+      - name: NodeJS Setup
+        uses: actions/setup-node@v1
+        with:
+          node-version: 20.19.2
+
+      - name: Dependency Installation
+        run: npm install
+
+      - name: App Build
+        run: npm run build
+
